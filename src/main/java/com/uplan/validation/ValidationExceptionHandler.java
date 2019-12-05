@@ -14,6 +14,7 @@ import java.util.List;
  * Spring validation exception handler that intercepts {@link MessageContainException} ,
  * {@link EntityMessageContainException}, fill it with mapper and add failed validation http status.
  */
+@ControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
   private ValidationExceptionMapper validationExceptionMapper;
@@ -26,11 +27,6 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
   public ValidationExceptionHandler() {
     validationExceptionMapper = new ValidationExceptionMapperImpl();
     failedValidationStatus = HttpStatus.BAD_REQUEST;
-  }
-
-  public ValidationExceptionHandler(ValidationExceptionMapper validationExceptionMapper, HttpStatus failedValidationStatus) {
-    this.validationExceptionMapper = validationExceptionMapper;
-    this.failedValidationStatus = failedValidationStatus;
   }
 
   @ResponseBody
@@ -47,6 +43,10 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
   public void setFailedValidationStatus(HttpStatus failedValidationStatus) {
     this.failedValidationStatus = failedValidationStatus;
+  }
+
+  public void setValidationExceptionMapper(ValidationExceptionMapper validationExceptionMapper) {
+    this.validationExceptionMapper = validationExceptionMapper;
   }
 
 }

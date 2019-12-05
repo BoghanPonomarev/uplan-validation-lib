@@ -160,13 +160,8 @@ ________________________________________________________________________________
     }
     
 But honestly, this is not entirely useful yet. It is not correctly every time catch validation exception in out 
-services, facades or controllers, so you may produce special bean for it`s handling.
-
-    @Bean
-    public ResponseEntityExceptionHandler validationExceptionHandler() {
-        return new ValidationExceptionHandler();
-        //or ValidationExceptionHandler(new ValidationExceptionMapperImpl(), HttpStatus.BAD_REQUEST);
-    }
+services, facades or controllers, so you may know that there is ValidationExceptionHandler.class that always 
+handle your validation exceptions if you not catch it. Handler map it on JSON and return with BAD_REQUEST http code.
     
 Here ValidationExceptionMapperImpl() it`s just simple mapper that converts dto objects and lists to ResponseEntity<>.
 
@@ -233,14 +228,9 @@ ________________________________________________________________________________
 In all cases if it is not validation error or this validation error not corresponds to UserValidationFailDto.class
 mapping - nothing will thrown, so that you can continue processing 400 http response.
 
-And finally, it will be very convenient if you announce ResponseEntityExceptionHandler.class
-in the service client, so errors can pass through it without redefinition.
- 
- 
-     @Bean
-     public ResponseEntityExceptionHandler validationExceptionHandler() {
-         return new ValidationExceptionHandler();
-     }
+And finally, it will be very convenient if you ignore validation exceptions
+in the service client, so exceptions can pass through it without redefinition.
+
      
 Hope I have a little easier development for you, good luck
 
