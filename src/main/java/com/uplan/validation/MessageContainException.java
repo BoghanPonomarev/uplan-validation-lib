@@ -2,7 +2,7 @@ package com.uplan.validation;
 
 import java.util.List;
 
-public class MessageContainException extends RuntimeException{
+public class MessageContainException extends RuntimeException {
 
   private List<String> errors;
 

@@ -1,6 +1,6 @@
 package com.uplan.validation;
 
-public abstract class EntityMappedDtoValidator<T,EX extends EntityValidationDto> {
+public abstract class EntityMappedDtoValidator<T,EX extends EntityValidationFailDto> {
 
   public final void validate(T targetDto) throws EntityMessageContainException {
     EX entityValidationResult = validateEntity(targetDto);

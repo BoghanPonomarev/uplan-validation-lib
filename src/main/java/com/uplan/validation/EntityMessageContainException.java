@@ -2,13 +2,13 @@ package com.uplan.validation;
 
 public class EntityMessageContainException extends RuntimeException {
 
-  private EntityValidationDto errors;
+  private EntityValidationFailDto errors;
 
-  public EntityMessageContainException(EntityValidationDto errors) {
+  public EntityMessageContainException(EntityValidationFailDto errors) {
     this.errors = errors;
   }
 
-  public EntityValidationDto getErrors() {
+  public EntityValidationFailDto getErrors() {
     return errors;
   }
 }

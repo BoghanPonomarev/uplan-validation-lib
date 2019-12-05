@@ -22,6 +22,6 @@ public interface UserValidationExceptionMapper {
      */
     ResponseEntity<List<String>> handleErrors(HttpStatus errorResponseStatus, List<String> errorCodes);
 
-    <T extends EntityValidationDto> ResponseEntity<T> handleEntityMappedErrors(HttpStatus errorResponseStatus, T errorCodesEntity);
+    <T extends EntityValidationFailDto> ResponseEntity<T> handleEntityMappedErrors(HttpStatus errorResponseStatus, T errorCodesEntity);
 
 }

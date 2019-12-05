@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @ControllerAdvice
@@ -34,7 +31,7 @@ public class SystemExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ResponseBody
   @ExceptionHandler({EntityMessageContainException.class})
-  public  ResponseEntity<? extends EntityValidationDto> handleException(EntityMessageContainException exception) {
+  public  ResponseEntity<? extends EntityValidationFailDto> handleException(EntityMessageContainException exception) {
     return userValidationExceptionMapper.handleEntityMappedErrors(HttpStatus.BAD_REQUEST,  exception.getErrors());
   }
 

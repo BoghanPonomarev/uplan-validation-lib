@@ -16,7 +16,7 @@ public class UserValidationExceptionMapperImpl implements UserValidationExceptio
     }
 
     @Override
-    public <T extends EntityValidationDto> ResponseEntity<T> handleEntityMappedErrors(HttpStatus errorResponseStatus, T errorCodesEntity) {
+    public <T extends EntityValidationFailDto> ResponseEntity<T> handleEntityMappedErrors(HttpStatus errorResponseStatus, T errorCodesEntity) {
         if (errorCodesEntity.isContainErrorCodes()) {
             return ResponseEntity.status(errorResponseStatus).body(errorCodesEntity);
         }

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ValidationFailedResponseClientHandlerImpl<T extends EntityValidationDto> implements ValidationFailedResponseClientHandler<T> {
+public class ValidationFailedResponseClientHandlerImpl<T extends EntityValidationFailDto> implements ValidationFailedResponseClientHandler<T> {
 
     @Override
     public void throwIfValidationError(String responseContent, Class<T> validationClass) {
