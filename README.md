@@ -43,6 +43,7 @@ Dependency :
 The easiest way to use library is to inherit error messaging abstractions:
 
                          - Let's say we have a simple request Dto -
+                         
     public class UserDto {
         private String name;
         private String email;
@@ -96,6 +97,7 @@ and maybe add some additional fields. Let's get a look...
 
 ____________________________________________________________________________________________________
                                -Create validation response dto object-
+                               
     public class UserValidationFailDto extends EntityValidationFailDto {
     
         private List<String> nameErrorCodes;
@@ -174,6 +176,7 @@ response in JSON format to their clients.
 And what about clients? The way of implementing client is the following:
 ____________________________________________________________________________________________________
                                 - Create same validation bean in you microservice client -
+                                
     public class UserValidationFailDto extends EntityValidationFailDto {
     
         private List<String> nameErrorCodes;
@@ -206,7 +209,7 @@ ________________________________________________________________________________
 
     @Bean
     public ListValidationFailedResponseClientHandler fallbackValidationHandler() {
-        return new ListValidationFailedResponseClientHandlerImpl<>();
+        return new ListValidationFailedResponseClientHandlerImpl();
     }
     
 ____________________________________________________________________________________________________
