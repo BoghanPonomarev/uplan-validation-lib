@@ -11,7 +11,7 @@ import org.springframework.validation.Errors;
 public abstract class ConstraintValidator<T> implements org.springframework.validation.Validator {
 
     /**
-     * Objective representation of <T> type.Necessary for avoiding of
+     * Objective representation of class <T> type.Necessary for avoiding of
      * ClassCastException in {@link ConstraintValidator#validate(Object, Errors)} method.
      */
     private Class targetClass;
