@@ -9,7 +9,7 @@ import java.util.List;
  * Interface that fills ResponseDto data by localized validation messages and sets up
  * http status code.
  */
-public interface UserValidationExceptionMapper {
+public interface ValidationExceptionMapper {
 
     /**
      * Builds error client_response by constructing it from list pf error codes

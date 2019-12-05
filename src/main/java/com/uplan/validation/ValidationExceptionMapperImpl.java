@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class UserValidationExceptionMapperImpl implements UserValidationExceptionMapper {
+public class ValidationExceptionMapperImpl implements ValidationExceptionMapper {
 
     @Override
     public ResponseEntity<List<String>> handleErrors(HttpStatus errorResponseStatus, List<String> errorCodes) {

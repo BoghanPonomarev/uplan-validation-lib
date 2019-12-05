@@ -13,26 +13,26 @@ import java.util.List;
 @ControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
-  private UserValidationExceptionMapper userValidationExceptionMapper;
+  private ValidationExceptionMapper validationExceptionMapper;
 
   public ValidationExceptionHandler() {
-    userValidationExceptionMapper = new UserValidationExceptionMapperImpl();
+    validationExceptionMapper = new ValidationExceptionMapperImpl();
   }
 
   @ResponseBody
   @ExceptionHandler({MessageContainException.class})
   public ResponseEntity<List<String>> handleException(MessageContainException exception) {
-    return userValidationExceptionMapper.handleErrors(HttpStatus.BAD_REQUEST,  exception.getErrors());
+    return validationExceptionMapper.handleErrors(HttpStatus.BAD_REQUEST,  exception.getErrors());
   }
 
   @ResponseBody
   @ExceptionHandler({EntityMessageContainException.class})
   public  ResponseEntity<? extends EntityValidationFailDto> handleException(EntityMessageContainException exception) {
-    return userValidationExceptionMapper.handleEntityMappedErrors(HttpStatus.BAD_REQUEST,  exception.getErrors());
+    return validationExceptionMapper.handleEntityMappedErrors(HttpStatus.BAD_REQUEST,  exception.getErrors());
   }
 
-  public void setUserValidationExceptionMapper(UserValidationExceptionMapper userValidationExceptionMapper) {
-    this.userValidationExceptionMapper = userValidationExceptionMapper;
+  public void setValidationExceptionMapper(ValidationExceptionMapper validationExceptionMapper) {
+    this.validationExceptionMapper = validationExceptionMapper;
   }
 
 }
