@@ -11,16 +11,12 @@ import java.util.List;
 
 
 @ControllerAdvice
-public class SystemExceptionHandler extends ResponseEntityExceptionHandler {
+public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
-  private final UserValidationExceptionMapper userValidationExceptionMapper;
+  private UserValidationExceptionMapper userValidationExceptionMapper;
 
-  public SystemExceptionHandler() {
+  public ValidationExceptionHandler() {
     userValidationExceptionMapper = new UserValidationExceptionMapperImpl();
-  }
-
-  public SystemExceptionHandler(UserValidationExceptionMapper userValidationExceptionMapper) {
-    this.userValidationExceptionMapper = userValidationExceptionMapper;
   }
 
   @ResponseBody
@@ -33,6 +29,10 @@ public class SystemExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler({EntityMessageContainException.class})
   public  ResponseEntity<? extends EntityValidationFailDto> handleException(EntityMessageContainException exception) {
     return userValidationExceptionMapper.handleEntityMappedErrors(HttpStatus.BAD_REQUEST,  exception.getErrors());
+  }
+
+  public void setUserValidationExceptionMapper(UserValidationExceptionMapper userValidationExceptionMapper) {
+    this.userValidationExceptionMapper = userValidationExceptionMapper;
   }
 
 }
