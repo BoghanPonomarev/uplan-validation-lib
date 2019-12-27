@@ -1,4 +1,4 @@
-package com.uplan.validation;
+package com.uplan.validation.exception;
 
 import java.util.List;
 

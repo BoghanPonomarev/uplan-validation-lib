@@ -1,8 +1,9 @@
-package com.uplan.validation;
+package com.uplan.validation.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.uplan.validation.exception.MessageContainException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,11 +24,12 @@ public class ListValidationFailedResponseClientHandlerImpl implements ListValida
 
   /**
    * Pareses validation failed response.
+   *
    * @return - list of error messages, if json parsing failed - returns null.
    */
   private List<String> parseJson(String content) {
     try {
-      ObjectMapper jsonMapper =  new ObjectMapper();
+      ObjectMapper jsonMapper = new ObjectMapper();
       jsonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
       String[] validationErrorMessages = jsonMapper.readValue(content, String[].class);
       return Arrays.asList(validationErrorMessages);

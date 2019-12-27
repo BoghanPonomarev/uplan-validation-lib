@@ -56,9 +56,9 @@ The easiest way to use library is to inherit error messaging abstractions:
         // getters and setters...
     }
 ____________________________________________________________________________________________________
-                         - Extend DtoValidator and override validation logic -
+                         - Extend ThrowableDtoValidator and override validation logic -
 
-    public class UserDtoValidator extends DtoValidator<UserDto> {
+    public class UserDtoValidator extends ThrowableDtoValidator<UserDto> {
     
         @Override
         public void validate(UserDto targetDto, List<String> errorCodes) {
@@ -74,7 +74,7 @@ ________________________________________________________________________________
     
     public UserService {
     
-        private DtoValidator<UserDto> userDtoValidator;
+        private ThrowableDtoValidator<UserDto> userDtoValidator;
     
         @Override
         public saveUser(UserDto entity) {
@@ -119,9 +119,9 @@ ________________________________________________________________________________
     }
 
 ____________________________________________________________________________________________________
-                        - Extend EntityMappedDtoValidator and override validation logic -
+                        - Extend ThrowableEntityMappedDtoValidator and override validation logic -
 
-    public class EntityUserDtoValidator extends EntityMappedDtoValidator<UserDto,UserValidationFailDto> {
+    public class ThrowableEntityMappedDtoValidator extends ThrowableEntityMappedDtoValidator<UserDto,UserValidationFailDto> {
     
         @Override
         public UserValidationFailDto validateEntity(UserDto targetDto) {
@@ -144,7 +144,7 @@ ________________________________________________________________________________
         
     public UserService {
     
-        private EntityMappedDtoValidator<UserDto,UserValidationFailDto> userDtoValidator;
+        private ThrowableEntityMappedDtoValidator<UserDto,UserValidationFailDto> userDtoValidator;
     
         @Override
         public saveUser(UserDto entity) {

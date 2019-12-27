@@ -1,5 +1,10 @@
-package com.uplan.validation;
+package com.uplan.validation.handler;
 
+import com.uplan.validation.ValidationFailContainer;
+import com.uplan.validation.exception.EntityMessageContainException;
+import com.uplan.validation.exception.MessageContainException;
+import com.uplan.validation.mapper.ValidationExceptionMapper;
+import com.uplan.validation.mapper.ValidationExceptionMapperImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,13 +37,13 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
   @ResponseBody
   @ExceptionHandler({MessageContainException.class})
   public ResponseEntity<List<String>> handleException(MessageContainException exception) {
-    return validationExceptionMapper.handleErrors(failedValidationStatus,  exception.getErrors());
+    return validationExceptionMapper.handleErrors(failedValidationStatus, exception.getErrors());
   }
 
   @ResponseBody
   @ExceptionHandler({EntityMessageContainException.class})
-  public  ResponseEntity<? extends EntityValidationFailDto> handleException(EntityMessageContainException exception) {
-    return validationExceptionMapper.handleEntityMappedErrors(failedValidationStatus,  exception.getErrors());
+  public ResponseEntity<? extends ValidationFailContainer> handleException(EntityMessageContainException exception) {
+    return validationExceptionMapper.handleEntityMappedErrors(failedValidationStatus, exception.getErrors());
   }
 
   public void setFailedValidationStatus(HttpStatus failedValidationStatus) {
