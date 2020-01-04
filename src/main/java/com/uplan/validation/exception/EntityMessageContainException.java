@@ -10,14 +10,14 @@ public class EntityMessageContainException extends RuntimeException {
   /**
    * Dto object that contains fields for validation fails info.
    */
-  private ValidationFailContainer errors;
+  private ValidationFailContainer errorDto;
 
-  public EntityMessageContainException(ValidationFailContainer errors) {
-    this.errors = errors;
+  public EntityMessageContainException(ValidationFailContainer errorDto) {
+    this.errorDto = errorDto;
   }
 
-  public ValidationFailContainer getErrors() {
-    return errors;
+  public ValidationFailContainer getErrorDto() {
+    return errorDto;
   }
 
 }

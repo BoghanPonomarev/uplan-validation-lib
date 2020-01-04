@@ -5,9 +5,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uplan.validation.exception.MessageContainException;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ListValidationFailedResponseClientHandlerImpl implements ListValidationFailedResponseClientHandler {
 
   /**
@@ -15,10 +12,10 @@ public class ListValidationFailedResponseClientHandlerImpl implements ListValida
    */
   @Override
   public void throwIfValidationError(String responseContent) {
-    List<String> validationFailedErrorMessages = parseJson(responseContent);
+    MessageContainException simpleValidationErrorDto = parseJson(responseContent);
 
-    if (validationFailedErrorMessages != null) {
-      throw new MessageContainException(validationFailedErrorMessages);
+    if (simpleValidationErrorDto != null) {
+      throw simpleValidationErrorDto;
     }
   }
 
@@ -27,12 +24,12 @@ public class ListValidationFailedResponseClientHandlerImpl implements ListValida
    *
    * @return - list of error messages, if json parsing failed - returns null.
    */
-  private List<String> parseJson(String content) {
+  private MessageContainException parseJson(String content) {
     try {
       ObjectMapper jsonMapper = new ObjectMapper();
       jsonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-      String[] validationErrorMessages = jsonMapper.readValue(content, String[].class);
-      return Arrays.asList(validationErrorMessages);
+      MessageContainException simpleErrorDto = jsonMapper.readValue(content, MessageContainException.class);
+      return simpleErrorDto;
     } catch (JsonProcessingException ignored) {
     }
     return null;

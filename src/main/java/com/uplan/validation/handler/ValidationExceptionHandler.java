@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.List;
-
 
 /**
  * Spring validation exception handler that intercepts {@link MessageContainException} ,
@@ -36,14 +34,14 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ResponseBody
   @ExceptionHandler({MessageContainException.class})
-  public ResponseEntity<List<String>> handleException(MessageContainException exception) {
-    return validationExceptionMapper.handleErrors(failedValidationStatus, exception.getErrors());
+  public ResponseEntity<MessageContainException> handleException(MessageContainException exception) {
+    return validationExceptionMapper.handleErrors(failedValidationStatus, exception);
   }
 
   @ResponseBody
   @ExceptionHandler({EntityMessageContainException.class})
   public ResponseEntity<? extends ValidationFailContainer> handleException(EntityMessageContainException exception) {
-    return validationExceptionMapper.handleEntityMappedErrors(failedValidationStatus, exception.getErrors());
+    return validationExceptionMapper.handleEntityMappedErrors(failedValidationStatus, exception.getErrorDto());
   }
 
   public void setFailedValidationStatus(HttpStatus failedValidationStatus) {
