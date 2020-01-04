@@ -1,6 +1,7 @@
 package com.uplan.validation.validator;
 
 import com.uplan.validation.exception.MessageContainException;
+import com.uplan.validation.exception.SimpleValidationErrorDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ public abstract class DtoValidator<T> {
   public final void validate(T targetDto) throws MessageContainException {
     List<String> errorCodes = validateWithResult(targetDto);
     if (!errorCodes.isEmpty()) {
-      throw new MessageContainException(errorCodes);
+      SimpleValidationErrorDto simpleValidationErrorDto = new SimpleValidationErrorDto(errorCodes);
+      throw new MessageContainException(simpleValidationErrorDto);
     }
   }
 

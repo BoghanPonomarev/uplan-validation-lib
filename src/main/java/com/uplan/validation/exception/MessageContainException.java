@@ -1,23 +1,25 @@
 package com.uplan.validation.exception;
 
-import java.util.List;
-
 /**
  * Exception that needed for validation response with single string list messages.
  */
 public class MessageContainException extends RuntimeException {
 
   /**
-   * List of error messages cause of which validation failed.
+   * Dto with error messages cause of which validation failed.
    */
-  private List<String> errorCodes;
+  private SimpleValidationErrorDto simpleValidationErrorDto;
 
-  public MessageContainException(List<String> errorCodes) {
-    this.errorCodes = errorCodes;
+  public MessageContainException(SimpleValidationErrorDto simpleValidationErrorDto) {
+    this.simpleValidationErrorDto = simpleValidationErrorDto;
   }
 
-  public List<String> getErrorCodes() {
-    return errorCodes;
+  public SimpleValidationErrorDto getSimpleValidationErrorDto() {
+    return simpleValidationErrorDto;
+  }
+
+  public void setSimpleValidationErrorDto(SimpleValidationErrorDto simpleValidationErrorDto) {
+    this.simpleValidationErrorDto = simpleValidationErrorDto;
   }
 
 }

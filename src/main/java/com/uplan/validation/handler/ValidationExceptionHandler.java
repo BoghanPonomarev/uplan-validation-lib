@@ -3,6 +3,7 @@ package com.uplan.validation.handler;
 import com.uplan.validation.ValidationFailContainer;
 import com.uplan.validation.exception.EntityMessageContainException;
 import com.uplan.validation.exception.MessageContainException;
+import com.uplan.validation.exception.SimpleValidationErrorDto;
 import com.uplan.validation.mapper.ValidationExceptionMapper;
 import com.uplan.validation.mapper.ValidationExceptionMapperImpl;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ResponseBody
   @ExceptionHandler({MessageContainException.class})
-  public ResponseEntity<MessageContainException> handleException(MessageContainException exception) {
+  public ResponseEntity<SimpleValidationErrorDto> handleException(MessageContainException exception) {
     return validationExceptionMapper.handleErrors(failedValidationStatus, exception);
   }
 
